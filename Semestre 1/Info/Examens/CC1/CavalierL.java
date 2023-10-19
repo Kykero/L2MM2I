@@ -1,18 +1,18 @@
 package test;
 
-public class CavalierL {
+public class Cavalier implements CavalierL {
     private int _x, _y;   // Position courante
     private int dir;       // Direction courante (nord(0), ouest(1), sud(2), est(3))
 
     // Constructeur par défaut
-    public CavalierL() {
+    public Cavalier() {
         _x = 0;
         _y = 0;
         dir = 0; // Par défaut, la direction est nord (0)
     }
 
     // Constructeur par paramètre
-    public CavalierL(int x, int y, int direction) {
+    public Cavalier(int x, int y, int direction) {
         _x = x;
         _y = y;
         
@@ -77,16 +77,16 @@ public class CavalierL {
     }
         
         public String toString() {
-            return "CavalierL [Position : (" + _x + ", " + _y + "), Direction : " + dir + "]";
+            return "Cavalier [Position : (" + _x + ", " + _y + "), Direction : " + dir + "]";
         }
         
         public static void main(String[] args) {
            
-            CavalierL cav1 = new CavalierL();
+            Cavalier cav1 = new Cavalier();
 
 
            
-            CavalierL cav2 = new CavalierL(2, 2, 2);
+            Cavalier cav2 = new Cavalier(2, 2, 2);
 
            
             System.out.println("cav 1 : "+cav1);
