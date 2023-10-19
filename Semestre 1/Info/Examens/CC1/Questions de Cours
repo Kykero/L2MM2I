@@ -1,0 +1,78 @@
+1) A quoi servent les structures de données pile, file, ensemble, liste ... ?
+-> Elle servent à stocker des données de manières spécifiques selon la structure de données utilisé.
+  Par exemple, pile s'organise sur le concept de "first in, last out" contrairement à la file qui est "first in, first out".
+
+
+2) En Java, quels sont les critères qui guident le choix d'une des implémations de l'interface List ?
+-> Cela dépend des besoins spécifiques de l'application. On parle ici de performance, de capacité dynamique, d'ordonnanceent... .
+  Par exemple, ArrayList est plussouvent plus performant que LinkedList pour accéder aux éléments.
+
+3) Qu'est ce que la généricité ?
+-> Cela permet de créer des classes, des méthodes ou des interfaces qui sont paramétrées par un ou plusieurs types, sans avoir à définir les types spécifiques au moment de la conception.
+
+4)A quoi sert le classpath ?
+-> Cela sert à spécifier le chemin vers les fichiers contenant les classes Java compilées et les bibliothèques dont un programme Java à besoin pour s'exécuter.
+
+5) Qu'est ce que le bytecode en Java ?
+-> Le bytecode est un ensemble d'instruction intermédiaires qui sont conçues pour être indépendantes de la plate-forme.
+  Cela signife qu'on peut l'exécuter sur différentes architectures matérielles ou environnements logiciels.
+
+6) qu'est ce qui distingue le type primitif du type complexe en Java ?
+-> Les types primitifs sont des types de données de base intégrés dans Java, les types complexe sont des objets basés sur des classes.
+
+
+7) A quoi sert le mot-clef static en Java ?
+-> Static est utilisé pour déclarer des membres qui sont associés à la classe plutôt qu'à une instance particulière de cette classe.
+
+8) Comment définir une constante en Java ?
+-> Il suffit d'utiliser le mot clé : "final". Exemple private final int nombre = 6;
+
+9)Il y a-t-il une erreur lors de la compilation du code Java suivant :
+  int a = (int) true;
+-> Oui il y'aura une erreur, on essaie de convertir une valeur de type boolean en un type int.
+
+
+10) A quoi correspond "(T[])" ci dessous : 
+public PileGene(){
+  sommet = -1;
+  P = (T[]) new Object[10 000];
+
+-> A transtyper vers le type T[]
+
+
+11) Remplacer les "..." du code ci-dessous par la bonne instruction :
+  public PileGene(PileGene<T> pile) {
+          int i;
+          sommet = pile.sommet;
+          p = (T[]) new Object[10 000];
+          for(i = 0; i <= sommet; i++){
+              ...
+          }
+}
+
+-> p[i] = pile.p[i];
+
+12) Remplacer les " ... " par la bonne instruction :
+public class EnsembleArray implements Ensemble {
+  private int[] T;
+  private int indice;
+
+public EnsembleArray(){
+    indice = -1;
+    T = new int[10 0000];
+}
+
+public int nbElement(){
+  ...
+}
+
+-> return(indice+1) car la première valeur est stocké à 0, si c'était indice = 0 en initialisation ce serait return indice;
+
+
+
+
+
+
+
+
+
