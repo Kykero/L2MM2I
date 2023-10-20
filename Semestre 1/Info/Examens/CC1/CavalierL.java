@@ -32,11 +32,9 @@ public class Cavalier implements CavalierL {
             case 0: // nord
                 _y -= 1;
                 _y -= 1;
-                _y -= 1;
                 _x -= 1;
                 break;
             case 1: // ouest
-                _x -= 1;
                 _x -= 1;
                 _x -= 1;
                 _y += 1;
@@ -44,11 +42,9 @@ public class Cavalier implements CavalierL {
             case 2: // sud
             	_y += 1;
                 _y += 1;
-                _y += 1;
                 _x += 1;
                 break;
             case 3: // est
-                _x += 1;
                 _x += 1;
                 _x += 1;
                 _y -= 1;
