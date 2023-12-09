@@ -191,3 +191,40 @@ On récupère à chaque fois la liste chainée à la position i du vecteur, puis
         }
     }
 //Explications : (la fonction est bancale) Permet de stocker tout les éléments de la table m dans notre table de hachage
+
+
+//Test\\
+    public static void main(String[] args) {
+    	
+    	//Création d'une TableHash avec paramètre
+        TableHash t1 = new TableHash(50);
+        
+        //Test sur t1 des méthodes principals
+        System.out.println(t1.size());
+        t1.put("Shara", "Ishvalda");
+        t1.put("Bazel", "Vaga");
+        
+        System.out.println(t1);
+        System.out.println(t1.getLoadFactor()); 
+        System.out.println(t1.keySet());
+        
+        t1.remove("Bazel");
+        System.out.println(t1);
+        System.out.println(t1.getCount());
+        System.out.println(t1.containsKey("Shara"));
+        System.out.println(t1.containsKey("Bazel"));
+        System.out.println(t1.containsValue("Ishvalda"));
+        System.out.println(t1.containsValue("Vaga"));
+        
+        
+        //Création par clonage de t2
+        TableHash t2 = new TableHash(t1);
+        t1.clear();
+        System.out.println(t1);
+        System.out.println(t2);
+        t2.put("Nergigante","Chaos");
+        t1.putAll(t2);
+        System.out.println("Putall t2 dans t1 : " + t1);
+
+        
+    }
