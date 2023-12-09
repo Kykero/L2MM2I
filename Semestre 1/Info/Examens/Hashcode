@@ -1,0 +1,107 @@
+#Hashcode
+
+//Les attributs\\
+
+/**
+*On a besoin d'un vecteur tab et d'un count pour connaître l'indice de remplissage du vecteur
+*
+*\
+Vector<LinkedList<Pair<Clef, Element>>> tab;
+int count
+
+
+//Les constructeurs\\
+
+    /*
+     * Constructeur TableHash avec en paramètre la taille (length)
+     */
+    public TableHash(int length) {
+        tab = new Vector<LinkedList<Pair<Clef, Element>>>();
+        count = 0;
+        for (int i = 0; i < length; i++) {
+            tab.add(new LinkedList<Pair<Clef, Element>>());
+        }
+    }
+    /*
+     * Constructeur par défaut
+     */
+    public TableHash() {
+    	tab = new Vector<LinkedList<Pair<Clef, Element>>>();
+    	count = 0;
+    	for(int i = 0; i < 1000 ; i++) {
+    		tab.add(new LinkedList<Pair<Clef, Element>>());
+    	}
+    }
+
+    /*
+     * Constructeur par clonage
+     */
+    public TableHash(TableHash<Clef, Element> t) {
+        tab = new Vector<LinkedList<Pair<Clef, Element>>>(t.tab.size());
+
+        for (int i = 0; i < t.tab.size(); i++) {
+            tab.add(new LinkedList<Pair<Clef, Element>>());
+            LinkedList<Pair<Clef, Element>> list = t.tab.get(i);
+
+            for (Pair<Clef, Element> pair : list) {
+                put(pair.key, pair.element);
+            }
+        }
+
+        count = t.count;
+    }
+
+//Explication : On initalise un vecteur contenant des listes chainées de la taille du vecteur t, puis on ajoute dans ce tableau autant de Liste Chainés que contient le tableau t.
+Dans chaque itération, on récupère la liste chainées associé à la position t.tab.get(i) et on récupère la clef et l'élément pour l'ajouter à notre tableau
+
+//Get\\
+
+    public int getCount() {
+        return count;
+    }
+
+//Méthode de Hachage\\
+
+    protected final int f(Object object) {
+        return object.hashCode();
+    }
+
+    protected final int g(int x) {
+        return Math.abs(x) % size();
+    }
+
+    protected final int h(Object object) {
+        return (g(f(object)));
+    }
+
+//Explications : On Hashcode l'objet qu'on veut dans la fonction f (Object peut être un str ou int) et on applique notre fonction de Hachage personnalisé.
+
+//Méthodes\\
+
+    public void put(Clef key, Element element) {
+        if (containsKey(key)) {
+            System.out.println("Erreur TableHash.put() cette clé est déjà utilisée");
+        } else {
+            tab.get(h(key)).add(new Pair(key, element));
+            count++;
+        }
+    }
+//Explications :
+On vérifie que la clé n'existe pas déjà, puis on récupère l'emplacement du vecteur grâce au hachage de la clé donné ((tab.get(h(key)))) et on ajoute la Pair
+
+
+    public Element get(Clef key) {
+        if (!containsKey(key)) {
+            System.out.println("Erreur TableHash.get() la clé n'existe pas");
+        } else {
+            LinkedList<Pair<Clef, Element>> list = tab.get(h(key));
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).key.equals(key)) {
+                    return list.get(i).element;
+                }
+            }
+        }
+        return null;
+    }
+
+//Explications : Méthode permettant de récupérer l'élément associé à la clé demandé
