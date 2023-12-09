@@ -103,5 +103,91 @@ On vérifie que la clé n'existe pas déjà, puis on récupère l'emplacement du
         }
         return null;
     }
-
 //Explications : Méthode permettant de récupérer l'élément associé à la clé demandé
+On vérifie si la clé existe dans le vecteur, ensuite on récupère la liste chainée associé a la position de la clé grâce au hachage et on parcours cette liste pour trouver la clé et on récupère l'élément
+
+
+    public Element remove(Clef key) {
+        Element result = null;
+        if (!containsKey(key)) {
+            System.out.println("Erreur TableHash.remove() la clé n'existe pas");
+        } else {
+            LinkedList<Pair<Clef, Element>> list = tab.get(h(key));
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).key.equals(key)) {
+                    result = list.get(i).element;
+                    list.remove(i);
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+//Explications : On fais pareil que get mais on stock le résultat avant de le supprimer pour le return
+
+
+    public boolean containsValue(Element element) {
+        boolean flag = false;
+        for (int i = 0; i < tab.size(); i++) {
+            LinkedList<Pair<Clef, Element>> list = tab.get(i);
+            for (int j = 0; j < list.size(); j++) {
+                Element e = list.get(j).element;
+                if (e.equals(element)) {
+                    flag = true;
+                }
+            }
+
+        }
+        return flag;
+    }
+//Explications : On est obligé de parcourir toutes les listes chainées du vecteur.
+On récupère à chaque fois la liste chainée à la position i du vecteur, puis on parcours toute la chaine et on compare les éléments, dès qu'on trouve on modifie le flag et on return.*
+
+
+    public boolean containsKey(Clef key) {
+        boolean flag = false;
+        LinkedList<Pair<Clef, Element>> list = tab.get(h(key));
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).key.equals(key)) {
+                flag = true;
+            }
+        }
+        return flag;
+    }
+//Explications : C'est plus simple, on récupère la liste chainée associée au hachage de la clé, ensuite on parcours les éléments de la liste.
+
+
+    public Set<Clef> keySet() {
+        Set<Clef> keySet = new HashSet<>();
+        for (LinkedList<Pair<Clef, Element>> list : tab) {
+            for (Pair<Clef, Element> pair : list) {
+                keySet.add(pair.key);
+            }
+        }
+        return keySet;
+    }
+//Explications : Permet d'afficher dans une liste toutes les clés utilisés. Apprendre par coeur.
+
+
+
+    public boolean isEmpty() {
+    	return count == 0;
+    }
+    
+    public void clear() {
+        for (int i = 0; i < tab.size(); i++) {
+            tab.get(i).clear();
+        }
+    }
+//Explications : permet de vérifier si le vecteur est vide et permet de vider le vecteur.
+
+
+    public void putAll(Table<Clef, Element> m) {
+    	Clef[] toarray = (Clef[]) m.keySet().toArray();
+        for (int i = 0; i < toarray.length ; i++) {
+        	put(toarray[i], m.get(toarray[i]));
+        	Element tmp = m.get(toarray[i]);
+        	System.out.println(tmp);
+        }
+    }
+//Explications : (la fonction est bancale) Permet de stocker tout les éléments de la table m dans notre table de hachage
